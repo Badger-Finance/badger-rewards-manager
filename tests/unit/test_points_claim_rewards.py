@@ -47,7 +47,7 @@ def test_basic_claim_twice_points_check(initialized_contract, user, fake_vault, 
   ## Go next epoch else you can't claim
 
   ## Claim rewards here
-  initialized_contract.claimRewardReference(EPOCH, fake_vault, token, user)
+  initialized_contract.claimRewardReferenceEmitting(EPOCH, fake_vault, token, user)
 
   ## Claim rewards accrues, which calculates points ## See `test_accrue_points for proofs`
   points_balance_after_accrue = initialized_contract.points(EPOCH, fake_vault, user)
@@ -58,7 +58,7 @@ def test_basic_claim_twice_points_check(initialized_contract, user, fake_vault, 
 
   ## Custom part
   ## If you claim twice, for same epoch, you get nothing the second time
-  initialized_contract.claimRewardReference(EPOCH, fake_vault, token, user)
+  initialized_contract.claimRewardReferenceEmitting(EPOCH, fake_vault, token, user)
 
   ## Your points are the same
   assert points_balance_after_accrue == initialized_contract.points(EPOCH, fake_vault, user)
